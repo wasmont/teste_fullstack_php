@@ -24,6 +24,19 @@ class ProdutoRepository {
 
         return $model->fresh();
     }
+    public function update($data){
+
+        $model = $this->produto::find($data['id']);;
+
+        $model->nome = $data['nome'];
+        $model->descricao = $data['descricao'];
+        $model->tensao = $data['tensao'];
+        $model->marca_id = $data['marca_id'];
+
+        $model->save();
+
+        return $model->fresh();
+    }
     public function delete($id){
         $resultado = $this->produto->where('id', $id)->delete();
         return ($resultado == 1) ? true : false;

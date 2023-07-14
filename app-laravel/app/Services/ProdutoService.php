@@ -28,6 +28,22 @@ class ProdutoService implements ProdutoRepositoryInterface {
 
         return $resultado;
     }
+    public function updateProduto($data) {
+
+        $validator = Validator::make($data, [
+            'nome' => 'required|unique:produto,nome,NULL,id,marca_id,'.$data['marca_id'],
+            'descricao' => 'required',
+            'tensao' => 'required',
+            'marca_id'=> 'required'
+        ]);
+
+        if($validator->fails())
+            throw new \InvalidArgumentException($validator->erros()->first());
+
+        $resultado = $this->produtoRepository->update($data);
+
+        return $resultado;
+    }
     public function removerProduto($id) {
 
         $resultado = $this->produtoRepository->delete($id);
