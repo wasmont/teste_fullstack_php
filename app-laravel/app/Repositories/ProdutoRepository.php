@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\ProdutoModel;
+use Illuminate\Support\Facades\DB;
+
 class ProdutoRepository {
     protected $produto;
 
@@ -21,6 +23,10 @@ class ProdutoRepository {
         $model->save();
 
         return $model->fresh();
+    }
+    public function delete($id){
+        $resultado = $this->produto->where('id', $id)->delete();
+        return ($resultado == 1) ? true : false;
     }
 }
 

@@ -28,5 +28,11 @@ class ProdutoService implements ProdutoRepositoryInterface {
 
         return $resultado;
     }
+    public function removerProduto($id) {
 
+        $resultado = $this->produtoRepository->delete($id);
+        return $resultado;
+    }    
+
+    
 }

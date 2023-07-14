@@ -10,6 +10,17 @@ class ProdutoController extends Controller
     public function __construct(ProdutoService $produtoService) {
         $this->produtoService = $produtoService;
     }
+    public function getProduct(int $id = null)
+    {
+        //
+    }
+
+    /**
+    * Save the specified resource in storage.
+    *
+    * @param  Request  $request
+    * @return Response
+    */
     public function store(Request $request)
     {
         $resultado = ['status' => 200];
@@ -24,4 +35,29 @@ class ProdutoController extends Controller
         
         return response()->json($resultado);
     }
+
+    /**
+    * Update the specified resource in storage.
+    *
+    * @param  Request $request
+    * @return Response
+    */
+    public function update(Request $request)
+    {
+        
+    }
+    public function destroy(int $id)
+    {
+        $resultado = ['status' => 204];
+        
+        try {
+            $resultado['data'] = $this->produtoService->removerProduto($id);
+        } catch (\Exception $e) {
+            $resultado = ['status' => 401, 'error' => "Nao foi possivel remover o registro!"];
+        }
+        
+        return response()->json($resultado);
+    }
+
+
 }
