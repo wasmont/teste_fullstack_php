@@ -41,5 +41,15 @@ class ProdutoRepository {
         $resultado = $this->produto->where('id', $id)->delete();
         return ($resultado == 1) ? true : false;
     }
+    
+    public function getProduto($id){
+
+        if(!empty($id))
+            $resultado = $this->produto::where('id', $id)->firstOrFail();
+        else    
+            $resultado = $this->produto::all();
+
+        return $resultado;
+    }
 }
 

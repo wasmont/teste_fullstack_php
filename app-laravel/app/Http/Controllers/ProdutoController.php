@@ -10,9 +10,17 @@ class ProdutoController extends Controller
     public function __construct(ProdutoService $produtoService) {
         $this->produtoService = $produtoService;
     }
-    public function getProduct(int $id = null)
+    public function getProduct($id = null)
     {
-        //
+        $resultado = ['status' => 200];
+        
+        try {
+            $resultado['data'] = $this->produtoService->getProduto($id);
+        } catch (\Exception $e) {
+            $resultado = ['status' => 401, 'error' => "Nao foi possivel encontrar Produto!"];
+        }
+        
+        return response()->json($resultado);
     }
 
     /**

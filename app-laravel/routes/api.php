@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('create', [ProdutoController::class, 'store']);
 Route::delete('delete/{id}', [ProdutoController::class, 'destroy']);
+Route::get('search/{id?}', [ProdutoController::class, 'getProduct']);
 Route::put('update', [ProdutoController::class, 'update']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

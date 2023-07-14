@@ -12,6 +12,11 @@ class ProdutoService implements ProdutoRepositoryInterface {
     public function __construct(ProdutoRepository $produtoRepository) {
         $this->produtoRepository = $produtoRepository;
     }
+    public function getProduto($id) {
+
+        $resultado = $this->produtoRepository->getProduto($id);
+        return $resultado;
+    }    
     public function saveProdutoData($data) {
 
         $validator = Validator::make($data, [
@@ -49,6 +54,5 @@ class ProdutoService implements ProdutoRepositoryInterface {
         $resultado = $this->produtoRepository->delete($id);
         return $resultado;
     }    
-
-    
+       
 }
