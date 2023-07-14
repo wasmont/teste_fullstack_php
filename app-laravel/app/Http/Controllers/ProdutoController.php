@@ -19,7 +19,7 @@ class ProdutoController extends Controller
         try {
             $resultado['data'] = $this->produtoService->saveProdutoData($data);
         } catch (\Exception $e) {
-            $resultado = ['status' => 401, 'error' => $e->getMessage()];
+            $resultado = ['status' => 401, 'error' => "Nao foi possivel adicionar o registro!"];
         }
         
         return response()->json($resultado);

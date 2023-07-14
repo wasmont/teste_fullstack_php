@@ -15,7 +15,7 @@ class ProdutoService implements ProdutoRepositoryInterface {
     public function saveProdutoData($data) {
 
         $validator = Validator::make($data, [
-            'nome' => 'required', //|unique:produto,nome,NULL,id,marca_id,'.$data['marca_id'],
+            'nome' => 'required|unique:produto,nome,NULL,id,marca_id,'.$data['marca_id'],
             'descricao' => 'required',
             'tensao' => 'required',
             'marca_id'=> 'required'
