@@ -36,7 +36,7 @@ class GetRequestProduto extends React.Component {
                 <Td>{produto.id}</Td>
                 <Td>{produto.nome}</Td>
                 <Td>{produto.descricao}</Td>
-                <Td>{produto.marca_id}</Td>
+                <Td>{produto.marca}</Td>
                 <Td isNumeric>{produto.tensao}</Td>
                 <Td><span className="Acoes-grid"><div id="modal-cadastro"><Modal nome="Alterar"/></div><AlertDialog/></span>
                 </Td>
