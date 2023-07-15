@@ -38,7 +38,7 @@ function App() {
                     <Th>NOME</Th>
                     <Th>DESCRIÇÃO</Th>
                     <Th>MARCA</Th>
-                    <Th isNumeric>TENSAO</Th>
+                    <Th isNumeric>TENSÃO</Th>
                     <Th isNumeric>AÇÕES</Th>
                   </Tr>
                 </Thead>
