@@ -35,7 +35,7 @@ function ModalCadastro(props) {
       if (tipo=='Alterar') {
           return <EditIcon onClick={abrirModal}/>
       }
-      return <Button colorScheme='blue' onClick={abrirModal}>{tipo} Produto</Button>
+      return <Button colorScheme='blue' onClick={abrirModal}>{tipo}</Button>
   }
 
   return (
@@ -52,7 +52,7 @@ function ModalCadastro(props) {
         <div className='Formulario'>
           <FormControl as='fieldset'>
             <FormLabel as='legend' align='center'>
-              <Text as="b" fontSize='20px' color='black'>{props.nome} Produto</Text> 
+              <Text as="b" fontSize='20px' color='black'>{props.nome}</Text> 
             </FormLabel>
             
             <FormLabel as="b">Nome:</FormLabel>
