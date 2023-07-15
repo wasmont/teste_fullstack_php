@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\ProdutoService;
+use App\Interfaces\MarcaRepositoryInterface;
 class ProdutoController extends Controller
 {
     protected $produtoService;
-    public function __construct(ProdutoService $produtoService) {
+    protected $marcaRepository;
+    public function __construct(ProdutoService $produtoService, MarcaRepositoryInterface $marcaRepository) {
         $this->produtoService = $produtoService;
+        $this->marcaRepository = $marcaRepository;
     }
     public function getProduct($id = null)
     {
@@ -77,5 +80,17 @@ class ProdutoController extends Controller
         return response()->json($resultado);
     }
 
+    public function getMarcas()
+    {
+        $resultado = ['status' => 200];
+        
+        try {
+            $resultado['data'] = $this->marcaRepository->getMarcas();
+        } catch (\Exception $e) {
+            $resultado = ['status' => 401, 'error' => "Nao foi possivel encontrar Marca!"];
+        }
+        
+        return response()->json($resultado);
+    }
 
 }

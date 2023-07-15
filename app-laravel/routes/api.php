@@ -19,6 +19,7 @@ Route::post('create', [ProdutoController::class, 'store']);
 Route::delete('delete/{id}', [ProdutoController::class, 'destroy']);
 Route::get('search/{id?}', [ProdutoController::class, 'getProduct']);
 Route::put('update', [ProdutoController::class, 'update']);
+Route::get('marcas', [ProdutoController::class, 'getMarcas']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
