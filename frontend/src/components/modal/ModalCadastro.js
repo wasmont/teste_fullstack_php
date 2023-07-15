@@ -1,4 +1,5 @@
 import './Modal.css';
+import { GetRequestMarcas } from '../MarcasCombo/GetRequestMarcas.js';
 import React from 'react';
 import Modal from 'react-modal';
 import { 
@@ -62,11 +63,8 @@ function ModalCadastro(props) {
             <FormLabel as="b">Tensão:</FormLabel>
             <Input placeholder='Informe a Tensão do Produto' size='sm' type='text' />
 
-            <FormLabel>Marca:</FormLabel>
-            <Select placeholder='Selecione a Marca...'>
-              <option>United Arab Emirates</option>
-              <option>Nigeria</option>
-            </Select>
+            <GetRequestMarcas />
+
           </FormControl>  
         </div>
         <div className='Botao-sair'>
