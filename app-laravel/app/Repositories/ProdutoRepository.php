@@ -26,7 +26,7 @@ class ProdutoRepository {
     }
     public function update($data){
 
-        $model = $this->produto::find($data['id']);;
+        $model = $this->produto::find($data['id']);
 
         $model->nome = $data['nome'];
         $model->descricao = $data['descricao'];
@@ -44,11 +44,22 @@ class ProdutoRepository {
     
     public function getProduto($id){
 
-        if(!empty($id))
-            $resultado = $this->produto::where('id', $id)->firstOrFail();
-        else    
-            $resultado = $this->produto::all();
+        if(!empty($id)) {
+            
+            $resultado = $this->produto::find($id)
+            ->leftJoin('marca', 'marca_id', '=', 'marca.id')
+            ->select('produto.id','produto.nome','produto.descricao','produto.tensao','marca.nome as marca')
+            ->firstOrFail();
 
+        } else {
+            
+            $resultado = DB::table('produto')
+            ->leftJoin('marca', 'marca_id', '=', 'marca.id')
+            ->select('produto.id','produto.nome','produto.descricao','produto.tensao','marca.nome as marca')
+            ->get();
+
+        }   
+        
         return $resultado;
     }
 }
