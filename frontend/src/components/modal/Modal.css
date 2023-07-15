@@ -2,18 +2,18 @@
     width: 800px;
     height: 400px;
     margin-top: 41px;
-    margin-left: 10%;
+    margin-left: 25%;
     border: 5px solid green;
-    background-color: #c5ccbd;
+    background-color: white;
 }
 
 .Formulario{
-    background-color: #c5ccbd;
+    background-color: white;
     margin-bottom: 40px;
 }
 
 .Botao-sair{
     margin-right: 2%;
     float: right;
-    background-color: #c5ccbd;
+    background-color: white;
 }

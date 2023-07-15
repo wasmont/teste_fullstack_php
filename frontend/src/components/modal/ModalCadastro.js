@@ -12,11 +12,12 @@ import {
           Input,
           Select
         } from '@chakra-ui/react'
+import { EditIcon } from '@chakra-ui/icons'        
 
 // Setar a modal 
 Modal.setAppElement(document.getElementById('modal-cadastro'));
 
-function ModalCadastro() {
+function ModalCadastro(props) {
   // Hook que demonstra se a modal está aberta ou não
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -30,10 +31,17 @@ function ModalCadastro() {
     setIsOpen(false);
   }
 
+  function MyButton(tipo) {
+      if (tipo=='Alterar') {
+          return <EditIcon onClick={abrirModal}/>
+      }
+      return <Button colorScheme='blue' onClick={abrirModal}>{tipo} Produto</Button>
+  }
+
   return (
     <div>
       <Stack spacing={4} direction='row' align='left'>
-        <Button colorScheme='blue' onClick={abrirModal}>Cadastrar Produto</Button>
+        {MyButton(props.nome)}
       </Stack>
       <Modal
         isOpen={modalIsOpen}
@@ -43,8 +51,8 @@ function ModalCadastro() {
       >
         <div className='Formulario'>
           <FormControl as='fieldset'>
-            <FormLabel as='legend'>
-              <Text as="b" fontSize='20px' color='black'>Cadastrar Produto</Text> 
+            <FormLabel as='legend' align='center'>
+              <Text as="b" fontSize='20px' color='black'>{props.nome} Produto</Text> 
             </FormLabel>
             
             <FormLabel as="b">Nome:</FormLabel>
