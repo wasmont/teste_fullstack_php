@@ -16,6 +16,7 @@ class MarcaRepository implements MarcaRepositoryInterface {
         
         $resultado = DB::table('marca')
         ->select('marca.*')
+        ->orderBy('marca.nome', 'asc')
         ->get();
 
         return $resultado;
