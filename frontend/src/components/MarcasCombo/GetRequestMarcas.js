@@ -22,13 +22,13 @@ class GetRequestMarcas extends React.Component {
         const { dadosMarcas } = this.state;
         let rows = [];
         dadosMarcas.forEach((marcas, index) => {
-            rows[index] = <option id={marcas.id}>{marcas.nome}</option>;
+            rows[index] = <option value={marcas.id}>{marcas.nome}</option>;
         });
 
         return (
             <div>
                 <FormLabel>Marca:</FormLabel>
-                <Select placeholder='Selecione a Marca...'>
+                <Select placeholder='Selecione a Marca...' name="marca_id">
                     {rows}
                 </Select>
             </div>
