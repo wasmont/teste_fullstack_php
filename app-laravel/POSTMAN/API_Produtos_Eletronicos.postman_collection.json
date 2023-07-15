@@ -122,6 +122,37 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "marcas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{URL}}/api/marcas",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"marcas"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
