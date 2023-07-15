@@ -1,0 +1,19 @@
+.Modal {
+    width: 800px;
+    height: 400px;
+    margin-top: 41px;
+    margin-left: 10%;
+    border: 5px solid green;
+    background-color: #c5ccbd;
+}
+
+.Formulario{
+    background-color: #c5ccbd;
+    margin-bottom: 40px;
+}
+
+.Botao-sair{
+    margin-right: 2%;
+    float: right;
+    background-color: #c5ccbd;
+}
