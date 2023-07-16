@@ -1,7 +1,3 @@
-# teste_fullstack_php
-Teste prático PHP fullstack
-
-
 # Teste Prático Fullstack
 
 ### Projeto Backend API
