@@ -1,6 +1,6 @@
 import './Modal.css';
 import { GetRequestMarcas } from '../MarcasCombo/GetRequestMarcas.js';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import serialize from 'form-serialize';
 import Modal from 'react-modal';
 import RequestSaveForm from './RequestSaveForm.js'
@@ -30,13 +30,14 @@ export default function ModalCadastro(props) {
   // Função que fecha a modal
   function fecharModal() {
     setIsOpen(false);
+    window.location.reload();
   }
 
-  const setarProduto = () => {
+  function setarProduto(e) {
+    e.preventDefault(); 
     const form = document.getElementById("Form-produto");
-    const formProduto = serialize(form, {hash: true, empty: true});
+    const formProduto = serialize(form, {hash: true, empty: false});
     setProduto(formProduto);
-    //console.log("Produto: "+JSON.stringify(produto));
   }
   
   function MyButton(tipo) {
@@ -58,6 +59,7 @@ export default function ModalCadastro(props) {
         className="Modal"
         key="Produto"
       >
+        <RequestSaveForm parentToForm={produto}/>
         <div className='Formulario'>
           <form id="Form-produto">
             <FormControl as='fieldset'>
@@ -79,10 +81,9 @@ export default function ModalCadastro(props) {
         </div>
         <div className='Botao-sair'>
           <Stack spacing={2} direction='row' align='left'>
-            <Button colorScheme='blue' onClick={() => setarProduto()}>Salvar</Button>
+            <Button colorScheme='blue' onClick={setarProduto}>Salvar</Button>
             <Button colorScheme='red' onClick={fecharModal}>Sair</Button>
           </Stack>
-          <RequestSaveForm parentToForm={produto}/>
         </div>
       </Modal>
     </div>
