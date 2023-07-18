@@ -8,23 +8,37 @@ import {
 } from '@chakra-ui/react'
 
 export default function RequestSaveForm({parentToForm}) { 
-  
+
   let payload = {
     "nome": parentToForm.nome,
     "descricao": parentToForm.descricao,
     "tensao":parentToForm.tensao,
     "marca_id": parseInt(parentToForm.marca_id)
   };
-    const [data, setData] = useState([]);
-    const [error, setError] = useState("");
+  const [data, setData] = useState([]);
+  const [error, setError] = useState("");
+  let action = "create";
 
-  if(parentToForm && (parentToForm.nome !== undefined)) {
+  if((parentToForm.tipo !== undefined) && parentToForm.tipo === 'Alterar') {
     
-      axios.post("http://localhost:9191/api/create",payload)
-        .then((response) => setData(response.data.data))
-        .catch((err) => {
+    payload.id = parentToForm.id;
+    action = "update";
+    
+    axios.put("http://localhost:9191/api/"+action,payload)
+    .then((response) => setData(response.data.data))
+    .catch((err) => {
+        setError(err.message);
+    });
+
+  }
+
+  if(parentToForm && (parentToForm.nome !== undefined) && parentToForm.tipo !== 'Alterar') {
+    
+      axios.post("http://localhost:9191/api/"+action,payload)
+      .then((response) => setData(response.data.data))
+      .catch((err) => {
           setError(err.message);
-        });
+      });
 
   }      
 
@@ -40,8 +54,8 @@ export default function RequestSaveForm({parentToForm}) {
           {data && (data.id !== undefined) ? (
             <Alert status='success'>
               <AlertIcon />
-              <AlertTitle>Adicionado!</AlertTitle>
-              <AlertDescription>Um novo registro foi adicionado.{reloadPage()}</AlertDescription>
+              <AlertTitle>Operação Finalizada!</AlertTitle>
+              <AlertDescription>Operação realizada com sucesso!.{reloadPage()}</AlertDescription>
             </Alert>) :
             ( error || (error !== undefined && error.length > 0) ? (
             <Alert status='error'>

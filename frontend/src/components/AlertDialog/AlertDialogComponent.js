@@ -45,7 +45,7 @@ function AlertDialogComponent (props) {
               </AlertDialogHeader>
   
               <AlertDialogBody>
-                Deseja remover o item?
+                Deseja remover o item <b>({props.id}-{props.nome})</b> ?
               </AlertDialogBody>
   
               <AlertDialogFooter>

@@ -16,7 +16,7 @@ function App() {
           <div className='Listagem-pg'>
             <Text fontSize='27px'>Listagem de Eletrodomésticos:</Text>
             <div id="modal-cadastro" className='Modal-cadastro'>
-              <Modal nome="Cadastrar"/>
+              <Modal tipo="Cadastrar"/>
             </div>
             <Divider bg='tomato' orientation='horizontal'/>
             <TableContainer bg='#A0AEC0'>

@@ -39,18 +39,27 @@ export default function ModalCadastro(props) {
     const formProduto = serialize(form, {hash: true, empty: false});
     setProduto(formProduto);
   }
+
+  function alterarProduto(e) {
+    e.preventDefault(); 
+    const form = document.getElementById("Form-produto");
+    const formProduto = serialize(form, {hash: true, empty: false});
+    formProduto.id = props.id;
+    formProduto.tipo = props.tipo;
+    setProduto(formProduto);
+  }
   
-  function MyButton(tipo) {
-      if (tipo === 'Alterar') {
+  function MyButton() {
+      if (props.tipo === 'Alterar') {
           return <EditIcon onClick={abrirModal}/>
       }
-      return <Button colorScheme='blue' onClick={abrirModal}>{tipo}</Button>
+      return <Button colorScheme='blue' onClick={abrirModal}>{props.tipo}</Button>
   }
 
   return (
     <div>
       <Stack spacing={4} direction='row' align='left'>
-        {MyButton(props.nome)}
+        {MyButton()}
       </Stack>
       <Modal
         isOpen={modalIsOpen}
@@ -59,29 +68,29 @@ export default function ModalCadastro(props) {
         className="Modal"
         key="Produto"
       >
-        <RequestSaveForm parentToForm={produto}/>
+        <RequestSaveForm parentToForm={produto} tipo={props.tipo} />
         <div className='Formulario'>
           <form id="Form-produto">
             <FormControl as='fieldset'>
               <FormLabel as='legend' align='center'>
-                <Text as="b" fontSize='20px' color='black'>{props.nome}</Text> 
+                <Text as="b" fontSize='20px' color='black'>{props.tipo}</Text> 
               </FormLabel>
               
               <FormLabel as="b">Nome:</FormLabel>
-              <Input placeholder='Informe o Nome do Produto' name='nome' size='sm' type='text' />
+              <Input placeholder='Informe o Nome do Produto' name='nome' size='sm' type='text' defaultValue={props.nome ?? ""} />
               <FormLabel as="b">Descrição:</FormLabel>
-              <Input placeholder='Informe a Descrição do Produto' name="descricao" size='sm' type='text' />
+              <Input placeholder='Informe a Descrição do Produto' name="descricao" size='sm' type='text' defaultValue={props.descricao ?? ""} />
               <FormLabel as="b">Tensão:</FormLabel>
-              <Input placeholder='Informe a Tensão do Produto' name="tensao" size='sm' type='text' />
+              <Input placeholder='Informe a Tensão do Produto' name="tensao" size='sm' type='text' defaultValue={props.tensao ?? ""} />
 
-              <GetRequestMarcas />
+              <GetRequestMarcas marca={props.marca ?? ""} />
 
             </FormControl>  
           </form>
         </div>
         <div className='Botao-sair'>
           <Stack spacing={2} direction='row' align='left'>
-            <Button colorScheme='blue' onClick={setarProduto}>Salvar</Button>
+            <Button colorScheme='blue' onClick={(props.tipo === 'Alterar') ? alterarProduto : setarProduto}>{props.tipo === 'Alterar' ? "Alterar" : "Salvar"}</Button>
             <Button colorScheme='red' onClick={fecharModal}>Sair</Button>
           </Stack>
         </div>

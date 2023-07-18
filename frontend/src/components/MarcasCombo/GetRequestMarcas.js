@@ -20,9 +20,15 @@ class GetRequestMarcas extends React.Component {
 
     render() {
         const { dadosMarcas } = this.state;
-        let rows = [];
+        let rows = [], option = "";
         dadosMarcas.forEach((marcas, index) => {
-            rows[index] = <option value={marcas.id} key={marcas.id}>{marcas.id} - {marcas.nome}</option>;
+
+            if(marcas.nome === this.props.marca) {
+                option = <option selected value={marcas.id} key={marcas.id}>{marcas.id} - {marcas.nome}</option>;
+            } else
+                option = <option value={marcas.id} key={marcas.id}>{marcas.id} - {marcas.nome}</option>;
+            
+            rows[index] = option;
         });
 
         return (
