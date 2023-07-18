@@ -38,7 +38,7 @@ class GetRequestProduto extends React.Component {
                 <Td>{produto.descricao}</Td>
                 <Td>{produto.marca}</Td>
                 <Td isNumeric>{produto.tensao}</Td>
-                <Td><span className="Acoes-grid"><div id="modal-cadastro"><Modal nome="Alterar"/></div><AlertDialog/></span>
+                <Td><span className="Acoes-grid"><div id="modal-cadastro"><Modal nome="Alterar"/></div><AlertDialog id={produto.id}/></span>
                 </Td>
                 </Tr>;
         });

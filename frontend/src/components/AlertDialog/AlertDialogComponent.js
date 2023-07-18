@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import axios from "axios";
 import { Button, useDisclosure,
     AlertDialog,
     AlertDialogBody,
@@ -6,14 +7,30 @@ import { Button, useDisclosure,
     AlertDialogHeader,
     AlertDialogContent,
     AlertDialogOverlay,
-    AlertDialogCloseButton,
+    //AlertDialogCloseButton,
   } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 
-function AlertDialogComponent () {
+function AlertDialogComponent (props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const [data, setData] = useState([]);
+    const [error, setError] = useState("");
     const cancelRef = React.useRef()
-  
+
+    function Remover() {
+    
+      axios.delete("http://localhost:9191/api/delete/"+props.id)
+        .then((response) => setData(response.data.data))
+        .catch((err) => {
+          setError(err.message);
+        });
+      
+      setTimeout(function(){
+          window.location.reload();
+      }, 2000);
+      
+    }
+
     return (
       <>
         <DeleteIcon onClick={onOpen}/>
@@ -36,7 +53,7 @@ function AlertDialogComponent () {
                 <Button ref={cancelRef} onClick={onClose}>
                   Cancelar
                 </Button>
-                <Button colorScheme='red' onClick={onClose} ml={3}>
+                <Button colorScheme='red' onClick={Remover} ml={3}>
                   Deletar
                 </Button>
               </AlertDialogFooter>
