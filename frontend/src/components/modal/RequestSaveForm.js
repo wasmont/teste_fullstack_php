@@ -43,7 +43,7 @@ export default function RequestSaveForm({parentToForm}) {
               <AlertTitle>Adicionado!</AlertTitle>
               <AlertDescription>Um novo registro foi adicionado.{reloadPage()}</AlertDescription>
             </Alert>) :
-            ( error || (error !== undefined) && error.length > 0 ? (
+            ( error || (error !== undefined && error.length > 0) ? (
             <Alert status='error'>
               <AlertIcon />
               <AlertTitle>Erro!</AlertTitle>

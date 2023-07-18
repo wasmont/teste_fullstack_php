@@ -7,7 +7,6 @@ import { Button, useDisclosure,
     AlertDialogHeader,
     AlertDialogContent,
     AlertDialogOverlay,
-    //AlertDialogCloseButton,
   } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 
