@@ -23,7 +23,7 @@ class ProdutoController extends Controller
             $resultado = ['status' => 401, 'error' => "Nao foi possivel encontrar Produto!"];
         }
         
-        return response()->json($resultado);
+        return response()->json($resultado, $resultado['status']);
     }
 
     /**
@@ -44,7 +44,7 @@ class ProdutoController extends Controller
             $resultado = ['status' => 401, 'error' => "Nao foi possivel adicionar o registro!"];
         }
         
-        return response()->json($resultado);
+        return response()->json($resultado, $resultado['status']);
     }
 
     /**
@@ -65,7 +65,7 @@ class ProdutoController extends Controller
             $resultado = ['status' => 401, 'error' => "Nao foi possivel atualizar o registro!"];
         }
         
-        return response()->json($resultado);
+        return response()->json($resultado, $resultado['status']);
     }
     public function destroy(int $id)
     {
@@ -77,7 +77,7 @@ class ProdutoController extends Controller
             $resultado = ['status' => 401, 'error' => "Nao foi possivel remover o registro!"];
         }
         
-        return response()->json($resultado);
+        return response()->json($resultado, $resultado['status']);
     }
 
     public function getMarcas()
@@ -90,7 +90,7 @@ class ProdutoController extends Controller
             $resultado = ['status' => 401, 'error' => "Nao foi possivel encontrar Marca!"];
         }
         
-        return response()->json($resultado);
+        return response()->json($resultado, $resultado['status']);
     }
 
 }
