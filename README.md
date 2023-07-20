@@ -34,3 +34,13 @@ Para este projeto está no seguinte diretório: "frontend" ao acessar via linha 
 * Local:            http://localhost:3000
 
 O projeto está rodando com o ReactJS.
+
+# Ilustração:
+
+* Tela:
+<img src="https://github.com/wasmont/teste_fullstack_php/blob/develop/app-laravel/public/images/tela.jpg" alt="Ilustração de Tela utilizando: ReactJS FrontEnd" title="Ilustração de Tela utilizando: ReactJS FrontEnd">
+
+* API:
+
+<img src="https://github.com/wasmont/teste_fullstack_php/blob/develop/app-laravel/public/images/api_laravel.png" alt="Ilustração de API utilizando: Laravel 10x BackEnd" title="Ilustração de API utilizando: Laravel 10x BackEnd">
+
