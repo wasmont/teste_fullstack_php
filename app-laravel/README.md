@@ -35,6 +35,15 @@ Local:            http://localhost:3000
 
 O projeto está rodando com o ReactJS.
 
+# Ilustração:
+
+* Tela:
+<img src="./public/images/tela.jpg" alt="Employee data" title="Ilustração de Tela utilizando: ReactJS FrontEnd">
+
+* API:
+
+<img src="./public/images/api.png" alt="Employee data" title="Ilustração de API utilizando: Laravel 10x BackEnd">
+
 
 
 
