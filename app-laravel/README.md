@@ -38,11 +38,11 @@ O projeto está rodando com o ReactJS.
 # Ilustração:
 
 * Tela:
-<img src="https://github.com/wasmont/teste_fullstack_php/blob/develop/app-laravel/public/images/tela.jpg" alt="Employee data" title="Ilustração de Tela utilizando: ReactJS FrontEnd">
+<img src="https://github.com/wasmont/teste_fullstack_php/blob/develop/app-laravel/public/images/tela.jpg" alt="Ilustração de Tela utilizando: ReactJS FrontEnd" title="Ilustração de Tela utilizando: ReactJS FrontEnd">
 
 * API:
 
-<img src="https://github.com/wasmont/teste_fullstack_php/blob/develop/app-laravel/public/images/api.png" alt="Employee data" title="Ilustração de API utilizando: Laravel 10x BackEnd">
+<img src="https://github.com/wasmont/teste_fullstack_php/blob/develop/app-laravel/public/images/api_laravel.png" alt="Ilustração de API utilizando: Laravel 10x BackEnd" title="Ilustração de API utilizando: Laravel 10x BackEnd">
 
 
 
