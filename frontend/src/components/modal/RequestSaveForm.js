@@ -5,6 +5,7 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
+  Progress
 } from '@chakra-ui/react'
 
 export default function RequestSaveForm({parentToForm}) { 
@@ -52,16 +53,21 @@ export default function RequestSaveForm({parentToForm}) {
 
   return <>
           {data && (data.id !== undefined) ? (
-            <Alert status='success'>
-              <AlertIcon />
-              <AlertTitle>Operação Finalizada!</AlertTitle>
-              <AlertDescription>Operação realizada com sucesso!.{reloadPage()}</AlertDescription>
-            </Alert>) :
+             <React.Fragment>
+              <Alert status='success'>
+                <AlertIcon />
+                <AlertTitle>Operação Finalizada!</AlertTitle>
+                <AlertDescription>Operação realizada com sucesso!.{reloadPage()}</AlertDescription>
+              </Alert>
+              <Progress size='xs' isIndeterminate />
+             </React.Fragment>) :
             ( error || (error !== undefined && error.length > 0) ? (
-            <Alert status='error'>
-              <AlertIcon />
-              <AlertTitle>Erro!</AlertTitle>
-              <AlertDescription>Não foi possível adicionar o eletrodoméstico!</AlertDescription>
-            </Alert>): (null) )}
+              <React.Fragment>
+                <Alert status='error'>
+                  <AlertIcon />
+                  <AlertTitle>Erro!</AlertTitle>
+                  <AlertDescription>Não foi possível adicionar o eletrodoméstico!</AlertDescription>
+                </Alert>
+              </React.Fragment> ): (null) )}
         </>
 }
