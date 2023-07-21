@@ -8,7 +8,8 @@ import {Table,
         Tr,
         Th,
         Td,
-        TableCaption
+        TableCaption,
+        Center
   } from '@chakra-ui/react';
 
 class GetRequestProduto extends React.Component {
@@ -63,7 +64,10 @@ class GetRequestProduto extends React.Component {
                     </Tr>
                     </Thead>
                     <Tbody>
-                        {rows}
+                        {rows.length > 0 ? (rows) : 
+                        (<Tr>
+                            <Td colSpan={6}><Center>Não existem Eletrodomésticos a serem listados!</Center></Td>
+                        </Tr>)}
                     </Tbody>
                     <Tfoot>
                     <Tr>
