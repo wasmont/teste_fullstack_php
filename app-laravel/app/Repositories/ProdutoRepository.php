@@ -48,14 +48,14 @@ class ProdutoRepository {
             
             $resultado = $this->produto::find($id)
             ->leftJoin('marca', 'marca_id', '=', 'marca.id')
-            ->select('produto.id','produto.nome','produto.descricao','produto.tensao','marca.nome as marca')
+            ->select('produto.id','produto.nome','produto.descricao','produto.tensao','marca.id as marca_id','marca.nome as marca')
             ->firstOrFail();
 
         } else {
             
             $resultado = DB::table('produto')
             ->leftJoin('marca', 'marca_id', '=', 'marca.id')
-            ->select('produto.id','produto.nome','produto.descricao','produto.tensao','marca.nome as marca')
+            ->select('produto.id','produto.nome','produto.descricao','produto.tensao','marca.id as marca_id','marca.nome as marca')
             ->get();
 
         }   

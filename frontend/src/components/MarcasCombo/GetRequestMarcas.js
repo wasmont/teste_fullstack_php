@@ -6,7 +6,8 @@ class GetRequestMarcas extends React.Component {
         super(props);
 
         this.state = {
-            dadosMarcas: []
+            dadosMarcas: [],
+            selectedId: this.props.marca
         };
     }
 
@@ -20,22 +21,13 @@ class GetRequestMarcas extends React.Component {
 
     render() {
         const { dadosMarcas } = this.state;
-        let rows = [], option = "";
-        dadosMarcas.forEach((marcas, index) => {
-
-            if(marcas.nome === this.props.marca) {
-                option = <option selected value={marcas.id} key={marcas.id}>{marcas.id} - {marcas.nome}</option>;
-            } else
-                option = <option value={marcas.id} key={marcas.id}>{marcas.id} - {marcas.nome}</option>;
-            
-            rows[index] = option;
-        });
-
         return (
             <div>
                 <FormLabel>Marca:</FormLabel>
-                <Select placeholder='Selecione a Marca...' name="marca_id">
-                    {rows}
+                <Select placeholder='Selecione a Marca...' name="marca_id" onChange={(e) => this.setState({selectedId: parseInt(e.target.value)})}>
+                    {dadosMarcas.map((marca) => (
+                        <option value={marca.id} key={marca.id} selected={marca.id === this.props.marca ?? "selected"}>{marca.id} - {marca.nome}</option>
+                    ))}
                 </Select>
             </div>
         );

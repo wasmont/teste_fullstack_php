@@ -41,7 +41,7 @@ class GetRequestProduto extends React.Component {
                 <Td isNumeric>{produto.tensao}</Td>
                 <Td><span className="Acoes-grid">
                         <div id="modal-cadastro"><Modal tipo="Alterar" id={produto.id} 
-                            nome={produto.nome} descricao={produto.descricao} tensao={produto.tensao} marca={produto.marca}/>
+                            nome={produto.nome} descricao={produto.descricao} tensao={produto.tensao} marca={produto.marca_id}/>
                         </div>
                         <AlertDialog id={produto.id} nome={produto.nome}/>
                     </span>
