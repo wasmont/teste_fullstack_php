@@ -8,10 +8,6 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <Text fontSize='32px' as="b" color='white'>Desafio - Fullstack</Text>
-      </header>
-      <div>
         <Box bg='#E2E8F0' w='100%' h="100vh"  p={4} color='black'>
           <div className='Listagem-pg'>
             <Text fontSize='27px'>Listagem de Eletrodomésticos:</Text>
@@ -24,7 +20,6 @@ function App() {
             </TableContainer>
           </div>
         </Box>
-      </div>  
     </div>
   );
   

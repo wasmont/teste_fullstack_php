@@ -18,7 +18,7 @@
   min-height: 8vh;
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
@@ -48,4 +48,44 @@
 
 .Listagem-pg{
   margin-top: 3%;
+}
+
+.Posicao-contato{
+  margin-bottom: 5%;
+  background: #E2E8F0;
+}
+
+.Menu{
+  margin-top: 15px;
+}
+
+.Menu-home{
+  float: left;
+  margin-left: 17px;
+}
+
+.Menu-contato{
+  float: right;
+  margin-right: 17px;
+}
+
+.Contato-text{
+  background: #E2E8F0;
+}
+
+.Footer{
+  background: #E2E8F0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3%;
+  font-weight: bold;
+}
+
+.Contato{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5%;
+  font-size: calc(10px + 2vmin);
 }
