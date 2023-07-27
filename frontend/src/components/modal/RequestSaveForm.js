@@ -66,7 +66,7 @@ export default function RequestSaveForm({parentToForm}) {
                 <Alert status='error'>
                   <AlertIcon />
                   <AlertTitle>Erro!</AlertTitle>
-                  <AlertDescription>Não foi possível adicionar o eletrodoméstico!</AlertDescription>
+                  <AlertDescription>Não foi possível realizar Operação!</AlertDescription>
                 </Alert>
               </React.Fragment> ): (null) )}
         </>
