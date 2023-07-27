@@ -13,7 +13,8 @@ import {Table,
   } from '@chakra-ui/react';
 import { CSVLink } from "react-csv";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
+import { faFileCsv, faFilePdf } from "@fortawesome/free-solid-svg-icons";
+import Produtos from '../../Reports/Produtos.js';
 
 
 class GetRequestProduto extends React.Component {
@@ -72,6 +73,7 @@ class GetRequestProduto extends React.Component {
 
         return (
             <div>
+                <div className='Export-pdf'><span onClick={() => Produtos(dadosProduto)}><FontAwesomeIcon icon={faFilePdf} title='Report Eletrodomésticos' size='lg'/></span></div>
                 <div className='Export-csv'><CSVLink {...csvReport}><FontAwesomeIcon icon={faFileCsv} title='Exportar Formato Excel' size='lg'/></CSVLink></div>
                 <Table variant='striped' colorScheme='teal' size="md">
                 <TableCaption>Produtos de Eletrodomésticos - @author: Washington Monteiro/2023</TableCaption>
