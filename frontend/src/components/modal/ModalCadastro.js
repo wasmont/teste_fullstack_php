@@ -82,7 +82,7 @@ export default function ModalCadastro(props) {
               <Input placeholder='Informe a Descrição do Produto' name="descricao" size='sm' type='text' defaultValue={props.descricao ?? ""} />
               <FormLabel as="b">Tensão:</FormLabel>
               <Input placeholder='Informe a Tensão do Produto' name="tensao" size='sm' type='text' defaultValue={props.tensao ?? ""} />
-
+            
               <GetRequestMarcas marca={props.marca ?? ""} />
 
             </FormControl>  

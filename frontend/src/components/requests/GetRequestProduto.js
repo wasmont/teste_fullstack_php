@@ -65,7 +65,9 @@ class GetRequestProduto extends React.Component {
                         <div id="modal-cadastro"><Modal tipo="Alterar" id={produto.id} 
                             nome={produto.nome} descricao={produto.descricao} tensao={produto.tensao} marca={produto.marca_id}/>
                         </div>
-                        <AlertDialog id={produto.id} nome={produto.nome}/>
+                        <div className='Excluir'>
+                            <AlertDialog id={produto.id} nome={produto.nome}/>
+                        </div>
                     </span>
                 </Td>
                 </Tr>;

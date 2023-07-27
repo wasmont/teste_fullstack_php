@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import { Button, useDisclosure,
     AlertDialog,
@@ -15,9 +15,12 @@ function AlertDialogComponent (props) {
     const [data, setData] = useState([]);
     const [error, setError] = useState("");
     const cancelRef = React.useRef()
-
+    const [isLoading, setIsLoading] = useState(false);
+  
     function Remover() {
-    
+      
+      setIsLoading(current => !current);
+
       axios.delete("http://localhost:9191/api/delete/"+props.id)
         .then((response) => setData(response.data.data))
         .catch((err) => {
@@ -29,6 +32,10 @@ function AlertDialogComponent (props) {
       }, 2000);
       
     }
+
+    useEffect(() => {
+      console.log('isLoading is: ', isLoading);
+    }, [isLoading]);
 
     return (
       <>
@@ -52,7 +59,10 @@ function AlertDialogComponent (props) {
                 <Button ref={cancelRef} onClick={onClose}>
                   Cancelar
                 </Button>
-                <Button colorScheme='red' onClick={Remover} ml={3}>
+                <Button 
+                  loadingText='Removendo'
+                  variant='outline'
+                  colorScheme='red' onClick={Remover} ml={3} className={isLoading ? "Cursor-loading" : "" }>
                   Deletar
                 </Button>
               </AlertDialogFooter>

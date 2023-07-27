@@ -24,7 +24,7 @@ class GetRequestMarcas extends React.Component {
         return (
             <div>
                 <FormLabel>Marca:</FormLabel>
-                <Select placeholder='Selecione a Marca...' name="marca_id" onChange={(e) => this.setState({selectedId: parseInt(e.target.value)})}>
+                <Select placeholder='Selecione a Marca...' name="marca_id" onChange={(e) => this.setState({selectedId: parseInt(e.target.value)})} className='Marcas-eletrod'>
                     {dadosMarcas.map((marca) => (
                         <option value={marca.id} key={marca.id} selected={marca.id === this.props.marca ?? "selected"}>{marca.id} - {marca.nome}</option>
                     ))}
