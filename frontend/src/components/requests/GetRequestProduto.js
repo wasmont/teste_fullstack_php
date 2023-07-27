@@ -11,6 +11,10 @@ import {Table,
         TableCaption,
         Center
   } from '@chakra-ui/react';
+import { CSVLink } from "react-csv";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
+
 
 class GetRequestProduto extends React.Component {
     constructor(props) {
@@ -31,6 +35,23 @@ class GetRequestProduto extends React.Component {
 
     render() {
         const { dadosProduto } = this.state;
+
+        //Export CSV
+        const headers = [
+            { label: "ID", key: "id",style:{'font-wheght':'bold'}},
+            { label: "NOME", key: "nome" },
+            { label: "DESCRIÇÃO", key: "descricao" },
+            { label: "TENSÃO", key: "tensao" },
+            { label: "MARCA", key: "marca" }
+        ];
+
+        const csvReport = {
+            data: dadosProduto,
+            headers: headers,
+            filename: 'Listagem_Eletrodomesticos.csv'
+        };
+        
+        //Listagem
         let rows = [];
         dadosProduto.forEach((produto, index) => {
             rows[index] = <Tr key={produto.id}>
@@ -51,6 +72,7 @@ class GetRequestProduto extends React.Component {
 
         return (
             <div>
+                <div className='Export-csv'><CSVLink {...csvReport}><FontAwesomeIcon icon={faFileCsv} title='Exportar Formato Excel' size='lg'/></CSVLink></div>
                 <Table variant='striped' colorScheme='teal' size="md">
                 <TableCaption>Produtos de Eletrodomésticos - @author: Washington Monteiro/2023</TableCaption>
                     <Thead>

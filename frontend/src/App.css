@@ -89,3 +89,10 @@
   margin-top: 5%;
   font-size: calc(10px + 2vmin);
 }
+
+.Export-csv{
+  float: right;
+  margin-top: 1%;
+  margin-right: 1%;
+  margin-bottom: 1%;
+}
