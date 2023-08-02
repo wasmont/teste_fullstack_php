@@ -61,7 +61,7 @@ class ProdutoStoreRequest extends FormRequest
                 'success' => false,
                 'message' => "It's not a valid json, check the Header Request",
                 'errors' => $validator->errors()
-            ]);        
+            ],401);        
 
         } else {
 
@@ -69,7 +69,7 @@ class ProdutoStoreRequest extends FormRequest
                 'success' => false,
                 'message' => 'Ops! Some errors occurred',
                 'errors' => $validator->errors()
-            ]);        
+            ],401);        
 
         }
             
