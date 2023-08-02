@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\ProdutoService;
+use App\Http\Requests\ProdutoStoreRequest;
 use App\Interfaces\MarcaRepositoryInterface;
 class ProdutoController extends Controller
 {
@@ -29,17 +30,15 @@ class ProdutoController extends Controller
     /**
     * Save the specified resource in storage.
     *
-    * @param  Request  $request
+    * @param  ProdutoStoreRequest  $request
     * @return Response
     */
-    public function store(Request $request)
+    public function store(ProdutoStoreRequest $request)
     {
         $resultado = ['status' => 200];
-
-        $data = $request->only(['nome','descricao','tensao','marca_id']);
         
         try {
-            $resultado['data'] = $this->produtoService->saveProdutoData($data);
+            $resultado['data'] = $this->produtoService->saveProdutoData($request->validated());
         } catch (\Exception $e) {
             $resultado = ['status' => 401, 'error' => "Nao foi possivel adicionar o registro!"];
         }
@@ -50,15 +49,14 @@ class ProdutoController extends Controller
     /**
     * Update the specified resource in storage.
     *
-    * @param  Request $request
+    * @param  ProdutoStoreRequest $request
     * @return Response
     */
-    public function update(Request $request)
+    public function update(ProdutoStoreRequest $request)
     {
         $resultado = ['status' => 200];
+        $data = ($request->validated()) ? $request : [];
 
-        $data = $request->only(['id','nome','descricao','tensao','marca_id']);
-        
         try {
             $resultado['data'] = $this->produtoService->updateProduto($data);
         } catch (\Exception $e) {

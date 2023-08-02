@@ -13,46 +13,16 @@ class ProdutoService implements ProdutoRepositoryInterface {
         $this->produtoRepository = $produtoRepository;
     }
     public function getProduto($id) {
-
-        $resultado = $this->produtoRepository->getProduto($id);
-        return $resultado;
+        return $this->produtoRepository->getProduto($id);
     }    
     public function saveProdutoData($data) {
-
-        $validator = Validator::make($data, [
-            'nome' => 'string|required|unique:produto,nome,NULL,id,marca_id,'.$data['marca_id'],
-            'descricao' => 'string|required',
-            'tensao' => 'string|required',
-            'marca_id'=> 'integer|required'
-        ]);
-
-        if($validator->fails())
-            throw new \InvalidArgumentException($validator->erros()->first());
-
-        $resultado = $this->produtoRepository->save($data);
-
-        return $resultado;
+        return $this->produtoRepository->save($data);
     }
     public function updateProduto($data) {
-
-        $validator = Validator::make($data, [
-            'nome' => 'string|required|unique:produto,nome,NULL,id,marca_id,'.$data['marca_id'],
-            'descricao' => 'string|required',
-            'tensao' => 'string|required',
-            'marca_id'=> 'integer|required'
-        ]);
-
-        if($validator->fails())
-            throw new \InvalidArgumentException($validator->erros()->first());
-
-        $resultado = $this->produtoRepository->update($data);
-
-        return $resultado;
+        return $this->produtoRepository->update($data);
     }
     public function removerProduto($id) {
-
-        $resultado = $this->produtoRepository->delete($id);
-        return $resultado;
+        return $this->produtoRepository->delete($id);
     }    
        
 }
