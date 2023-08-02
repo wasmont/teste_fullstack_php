@@ -14,12 +14,10 @@ class MarcaRepository implements MarcaRepositoryInterface {
     }
     public function getMarcas(){
         
-        $resultado = DB::table('marca')
+        return $this->marca
         ->select('marca.*')
         ->orderBy('marca.nome', 'asc')
         ->get();
-
-        return $resultado;
     }
 }
 

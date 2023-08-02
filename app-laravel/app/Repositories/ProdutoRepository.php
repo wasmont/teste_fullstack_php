@@ -53,7 +53,7 @@ class ProdutoRepository {
 
         } else {
             
-            $resultado = DB::table('produto')
+            $resultado = $this->produto
             ->leftJoin('marca', 'marca_id', '=', 'marca.id')
             ->select('produto.id','produto.nome','produto.descricao','produto.tensao','marca.id as marca_id','marca.nome as marca')
             ->get();
