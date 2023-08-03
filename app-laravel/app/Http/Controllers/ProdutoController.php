@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProdutoStoreRequest;
-use App\Interfaces\MarcaRepositoryInterface;
-use App\Interfaces\ProdutoRepositoryInterface;
+use App\Interfaces\{MarcaRepositoryInterface, ProdutoRepositoryInterface};
 class ProdutoController extends Controller
 {
     protected $produtoRepository;

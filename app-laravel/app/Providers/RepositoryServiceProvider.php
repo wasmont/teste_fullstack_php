@@ -3,10 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Interfaces\ProdutoRepositoryInterface;
-use App\Repositories\ProdutoRepository;
-use App\Interfaces\MarcaRepositoryInterface;
-use App\Repositories\MarcaRepository;
+use App\Interfaces\{ProdutoRepositoryInterface, MarcaRepositoryInterface};
+use App\Repositories\{ProdutoRepository, MarcaRepository};
 class RepositoryServiceProvider extends ServiceProvider
 {
     /**
