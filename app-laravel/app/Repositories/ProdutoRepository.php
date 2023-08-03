@@ -51,6 +51,7 @@ class ProdutoRepository implements ProdutoRepositoryInterface {
     
     public function getProduto(int $id = null) : object
     {
+
         if(!empty($id)) {
 
             $resultado = $this->produto
@@ -69,5 +70,6 @@ class ProdutoRepository implements ProdutoRepositoryInterface {
         }   
         
         return $resultado;
+        
     }
 }
