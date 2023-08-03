@@ -11,7 +11,9 @@ class ProdutoRepository implements ProdutoRepositoryInterface {
     protected object $produto;
 
     public function __construct(ProdutoModel $produto){
+
         $this->produto = $produto;
+
     }
     public function save(array $data) : object
     {
@@ -41,8 +43,10 @@ class ProdutoRepository implements ProdutoRepositoryInterface {
     }
     public function delete(int $id) : bool
     {
+
         $resultado = $this->produto->where('id', $id)->delete();
         return ($resultado == 1) ? true : false;
+        
     }
     
     public function getProduto(int $id = null) : object
