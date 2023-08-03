@@ -66,16 +66,7 @@ export default function RequestSaveForm({parentToForm}) {
           { data && (data.id !== undefined) ? (
              <React.Fragment>
                 {reloadPage()}
-             </React.Fragment>
-             
-             /*<React.Fragment>
-              <Alert status='success'>
-                <AlertIcon />
-                <AlertTitle>Operação Finalizada!</AlertTitle>
-                <AlertDescription>Operação realizada com sucesso!.{reloadPage()}</AlertDescription>
-              </Alert>
-              <Progress size='xs' isIndeterminate />
-             </React.Fragment>*/) :
+             </React.Fragment>) :
             ( error || (error !== undefined && error.length > 0) ? (
               <React.Fragment>
                 <Alert status='error'>
