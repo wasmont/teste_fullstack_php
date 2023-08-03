@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Services\ProdutoService;
 use App\Http\Requests\ProdutoStoreRequest;
 use App\Interfaces\MarcaRepositoryInterface;
+use App\Interfaces\ProdutoRepositoryInterface;
 class ProdutoController extends Controller
 {
-    protected $produtoService;
+    protected $produtoRepository;
     protected $marcaRepository;
-    public function __construct(ProdutoService $produtoService, MarcaRepositoryInterface $marcaRepository) {
-        $this->produtoService = $produtoService;
+    public function __construct(ProdutoRepositoryInterface $produtoRepository, MarcaRepositoryInterface $marcaRepository) {
+        $this->produtoRepository = $produtoRepository;
         $this->marcaRepository = $marcaRepository;
     }
     public function getProduct($id = null)
@@ -19,7 +18,7 @@ class ProdutoController extends Controller
         $resultado = ['status' => 200];
         
         try {
-            $resultado['data'] = $this->produtoService->getProduto($id);
+            $resultado['data'] = $this->produtoRepository->getProduto($id);
         } catch (\Exception $e) {
             $resultado = ['status' => 401, 'error' => "Nao foi possivel encontrar Produto!"];
         }
@@ -38,7 +37,7 @@ class ProdutoController extends Controller
         $resultado = ['status' => 200];
         
         try {
-            $resultado['data'] = $this->produtoService->saveProdutoData($request->validated());
+            $resultado['data'] = $this->produtoRepository->save($request->validated());
         } catch (\Exception $e) {
             $resultado = ['status' => 401, 'error' => "Nao foi possivel adicionar o registro!"];
         }
@@ -58,7 +57,7 @@ class ProdutoController extends Controller
         $data = ($request->validated()) ? $request : [];
 
         try {
-            $resultado['data'] = $this->produtoService->updateProduto($data);
+            $resultado['data'] = $this->produtoRepository->update($data);
         } catch (\Exception $e) {
             $resultado = ['status' => 401, 'error' => "Nao foi possivel atualizar o registro!"];
         }
@@ -70,7 +69,7 @@ class ProdutoController extends Controller
         $resultado = ['status' => 204];
         
         try {
-            $resultado['data'] = $this->produtoService->removerProduto($id);
+            $resultado['data'] = $this->produtoRepository->delete($id);
         } catch (\Exception $e) {
             $resultado = ['status' => 401, 'error' => "Nao foi possivel remover o registro!"];
         }

@@ -3,16 +3,16 @@
 namespace App\Repositories;
 
 use App\Models\ProdutoModel;
-use Illuminate\Support\Facades\DB;
+use App\Interfaces\ProdutoRepositoryInterface;
 
-class ProdutoRepository {
+class ProdutoRepository implements ProdutoRepositoryInterface {
     protected $produto;
 
     public function __construct(ProdutoModel $produto){
         $this->produto = $produto;
     }
-    public function save($data){
-
+    public function save(array $data) : object
+    {
         $model = new $this->produto;
 
         $model->nome = $data['nome'];
@@ -24,8 +24,8 @@ class ProdutoRepository {
 
         return $model->fresh();
     }
-    public function update($data){
-
+    public function update(object $data) : object
+    {
         $model = $this->produto::find($data['id']);
 
         $model->nome = $data['nome'];
@@ -37,14 +37,15 @@ class ProdutoRepository {
 
         return $model->fresh();
     }
-    public function delete($id){
+    public function delete(int $id) : bool
+    {
         $resultado = $this->produto->where('id', $id)->delete();
         return ($resultado == 1) ? true : false;
     }
     
-    public function getProduto($id){
-
-        if(!empty($id)) {
+    public function getProduto(int $id = null) : object
+    {
+        if(!empty($id) || $id!=0) {
             
             $resultado = $this->produto::find($id)
             ->leftJoin('marca', 'marca_id', '=', 'marca.id')
@@ -63,4 +64,3 @@ class ProdutoRepository {
         return $resultado;
     }
 }
-

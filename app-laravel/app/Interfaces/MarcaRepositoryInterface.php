@@ -4,5 +4,5 @@ namespace App\Interfaces;
 
 interface MarcaRepositoryInterface 
 {
-    public function getMarcas();
+    public function getMarcas() : object;
 }
