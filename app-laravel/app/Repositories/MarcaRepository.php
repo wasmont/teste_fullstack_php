@@ -8,7 +8,7 @@ use App\Models\MarcaModel;
 use App\Interfaces\MarcaRepositoryInterface;
 
 class MarcaRepository implements MarcaRepositoryInterface {
-    protected $marca;
+    protected object $marca;
 
     public function __construct(MarcaModel $marca){
         $this->marca = $marca;

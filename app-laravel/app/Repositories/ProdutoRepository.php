@@ -8,7 +8,7 @@ use App\Models\ProdutoModel;
 use App\Interfaces\ProdutoRepositoryInterface;
 
 class ProdutoRepository implements ProdutoRepositoryInterface {
-    protected $produto;
+    protected object $produto;
 
     public function __construct(ProdutoModel $produto){
         $this->produto = $produto;
@@ -47,11 +47,12 @@ class ProdutoRepository implements ProdutoRepositoryInterface {
     
     public function getProduto(int $id = null) : object
     {
-        if(!empty($id) || $id!=0) {
-            
-            $resultado = $this->produto::find($id)
+        if(!empty($id)) {
+
+            $resultado = $this->produto
             ->leftJoin('marca', 'marca_id', '=', 'marca.id')
             ->select('produto.id','produto.nome','produto.descricao','produto.tensao','marca.id as marca_id','marca.nome as marca')
+            ->where(['produto.id' => $id])
             ->firstOrFail();
 
         } else {
