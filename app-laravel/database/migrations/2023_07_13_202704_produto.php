@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('produto', function (Blueprint $table) {
             $table->id();
-            $table->text('nome'); 
-            $table->text('descricao'); 
-            $table->text('tensao'); 
+            $table->string('nome'); 
+            $table->string('descricao'); 
+            $table->string('tensao',20); 
             $table->timestamps();
             $table->integer('marca_id'); 
             $table->engine = 'InnoDB';

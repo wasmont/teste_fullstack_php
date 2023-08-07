@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('marca', function (Blueprint $table) {
             $table->id();
-            $table->text('nome'); 
+            $table->string('nome'); 
             $table->engine = 'InnoDB';
             $table->collation = 'utf8mb4_unicode_ci';
         });
