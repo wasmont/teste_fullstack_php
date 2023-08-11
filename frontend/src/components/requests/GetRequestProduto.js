@@ -9,7 +9,9 @@ import {Table,
         Th,
         Td,
         TableCaption,
-        Center
+        Center,
+        Stack,
+        Input
   } from '@chakra-ui/react';
 import { CSVLink } from "react-csv";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,7 +24,8 @@ class GetRequestProduto extends React.Component {
         super(props);
 
         this.state = {
-            dadosProduto: []
+            dadosProduto: [],
+            itens: []
         };
     }
 
@@ -31,9 +34,30 @@ class GetRequestProduto extends React.Component {
         const headers = { 'Content-Type': 'application/json' }
         fetch('http://localhost:9191/api/search/', { headers })
             .then(response => response.json())
-            .then(data => this.setState({ dadosProduto: data.data }));
+            .then(data => {this.setState({ dadosProduto: data.data }); this.setState({ itens: data.data });});
     }
 
+    filterTable(nome = null) {
+
+        let rows = [], allItens = [];
+        const { dadosProduto, itens } = this.state;
+
+        dadosProduto.forEach((produto, index) => {
+            
+            if(produto.nome.toLowerCase().includes(nome.toLowerCase()))
+                rows[index] = produto;
+
+        });
+
+        if(rows.length > 0 && nome.length > 0)
+            this.setState({ dadosProduto: rows })
+        else if (rows.length == 0 && nome.length > 0)
+            this.setState({ dadosProduto: allItens })
+        else 
+            this.setState({ dadosProduto: itens })
+        
+    }
+    
     render() {
         const { dadosProduto } = this.state;
 
@@ -75,6 +99,13 @@ class GetRequestProduto extends React.Component {
 
         return (
             <div>
+                <div>
+                    <Stack spacing={6} direction='row' className='Filtro'>
+                        <form>
+                            <Input placeholder='Filtrar por Nome' name='nome' size='sm' type='text' htmlSize={50} width='auto' onChange={(ev) => this.filterTable(ev.target.value)} />
+                        </form>
+                    </Stack>
+                </div>
                 <div className='Export-pdf'><span onClick={() => Produtos(dadosProduto)}><FontAwesomeIcon icon={faFilePdf} title='Report Eletrodomésticos' size='lg'/></span></div>
                 <div className='Export-csv'><CSVLink {...csvReport}><FontAwesomeIcon icon={faFileCsv} title='Exportar Formato Excel' size='lg'/></CSVLink></div>
                 <Table variant='striped' colorScheme='teal' size="md">

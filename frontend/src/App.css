@@ -120,3 +120,11 @@
 .Cursor-loading{
   cursor: wait;
 }
+
+.Filtro{
+  float: left;
+  margin-top: 2%;
+  margin-bottom: 1%;
+  margin-left: 1%;
+  color: white;
+}
