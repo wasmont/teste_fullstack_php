@@ -1,7 +1,6 @@
 import './Modal.css';
 import { GetRequestMarcas } from '../MarcasCombo/GetRequestMarcas.js';
 import React, { useState } from 'react';
-import serialize from 'form-serialize';
 import Modal from 'react-modal';
 import RequestSaveForm from './RequestSaveForm.js'
 import { 
@@ -12,7 +11,8 @@ import {
           FormLabel,
           Input,
         } from '@chakra-ui/react'
-import { EditIcon } from '@chakra-ui/icons'        
+import { EditIcon } from '@chakra-ui/icons'       
+import { useForm } from "react-hook-form"; 
 
 // Setar a modal 
 Modal.setAppElement(document.getElementById('root'/*'modal-cadastro'*/));
@@ -21,6 +21,9 @@ export default function ModalCadastro(props) {
   // Hook que demonstra se a modal está aberta ou não
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [produto, setProduto] = useState([]);
+  const { register, getValues } = useForm({
+    defaultValues: { nome: props.nome, descricao: props.descricao, tensao: props.tensao, marcaSelect: props.marca }
+  });
   
   // Função que abre a modal
   function abrirModal() {
@@ -35,15 +38,13 @@ export default function ModalCadastro(props) {
 
   function setarProduto(e) {
     e.preventDefault(); 
-    const form = document.getElementById("Form-produto");
-    const formProduto = serialize(form, {hash: true, empty: false});
+    const formProduto = getValues();
     setProduto(formProduto);
   }
 
   function alterarProduto(e) {
     e.preventDefault(); 
-    const form = document.getElementById("Form-produto");
-    const formProduto = serialize(form, {hash: true, empty: false});
+    const formProduto = getValues();
     formProduto.id = props.id;
     formProduto.tipo = props.tipo;
     setProduto(formProduto);
@@ -77,13 +78,13 @@ export default function ModalCadastro(props) {
               </FormLabel>
               
               <FormLabel as="b">Nome:</FormLabel>
-              <Input placeholder='Informe o Nome do Produto' name='nome' size='sm' type='text' defaultValue={props.nome ?? ""} />
+              <Input placeholder='Informe o Nome do Produto' name='nome' size='sm' type='text' {...register("nome")} />
               <FormLabel as="b">Descrição:</FormLabel>
-              <Input placeholder='Informe a Descrição do Produto' name="descricao" size='sm' type='text' defaultValue={props.descricao ?? ""} />
+              <Input placeholder='Informe a Descrição do Produto' name="descricao" size='sm' type='text' {...register("descricao")} />
               <FormLabel as="b">Tensão:</FormLabel>
-              <Input placeholder='Informe a Tensão do Produto' name="tensao" size='sm' type='text' defaultValue={props.tensao ?? ""} />
+              <Input placeholder='Informe a Tensão do Produto' name="tensao" size='sm' type='text' {...register("tensao")} />
             
-              <GetRequestMarcas marca={props.marca ?? ""} />
+              <GetRequestMarcas marca_id={props.marca ?? ""} register={register} />
 
             </FormControl>  
           </form>

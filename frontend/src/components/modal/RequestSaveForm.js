@@ -4,8 +4,7 @@ import {
   Alert,
   AlertIcon,
   AlertTitle,
-  AlertDescription/*,
-  Progress*/
+  AlertDescription
 } from '@chakra-ui/react'
 
 export default function RequestSaveForm({parentToForm}) { 
@@ -14,7 +13,7 @@ export default function RequestSaveForm({parentToForm}) {
     "nome": parentToForm.nome,
     "descricao": parentToForm.descricao,
     "tensao":parentToForm.tensao,
-    "marca_id": parseInt(parentToForm.marca_id)
+    "marca_id": parseInt(parentToForm.marcaSelect)
   };
   const [data, setData] = useState([]);
   const [error, setError] = useState("");
