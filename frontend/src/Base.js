@@ -9,7 +9,7 @@ import { faHouse, faAddressBook } from "@fortawesome/free-solid-svg-icons";
 function Base() {
 
   return (
-    <div className="Posicao-contato">
+    <>
       <header className="App-header">
         <Text fontSize='32px' as="b" color='white'>Desafio - Fullstack</Text>
       </header>
@@ -23,8 +23,8 @@ function Base() {
           <Route exact path="/contato" element={<Contato/>} />
         </Routes>
       </Router>
-      <footer className='Footer'>@2023</footer>
-    </div>
+      <footer className='Footer'>ReactJS @2023</footer>
+    </>
   );
   
 }
