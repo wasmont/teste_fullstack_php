@@ -90,6 +90,7 @@
   align-items: center;
   margin-top: 5%;
   font-size: calc(10px + 2vmin);
+  background: #E2E8F0;
 }
 
 .Export-csv{
@@ -134,4 +135,8 @@
 .Filtro ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: white;
   opacity: 1; /* Firefox */
+}
+
+.Menu-icons {
+  background: #E2E8F0;
 }

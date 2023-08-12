@@ -14,7 +14,7 @@ function Base() {
         <Text fontSize='32px' as="b" color='white'>Desafio - Fullstack</Text>
       </header>
       <Router>
-        <div>
+        <div className='Menu-icons'>
           <Link to="/" className='Menu Menu-home'><FontAwesomeIcon icon={faHouse} title='Home' size='lg'/></Link>
           <Link to="/contato" className='Menu Menu-contato'><FontAwesomeIcon icon={faAddressBook} title='Contato' size='lg'/></Link>
         </div>
