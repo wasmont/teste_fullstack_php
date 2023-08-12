@@ -37,25 +37,27 @@ class GetRequestProduto extends React.Component {
             .then(data => {this.setState({ dadosProduto: data.data }); this.setState({ itens: data.data });});
     }
 
-    filterTable(nome = null) {
+    filterTable(texto = null) {
 
-        let rows = [], allItens = [];
-        const { dadosProduto, itens } = this.state;
+        let rows = [];
+        const { itens } = this.state;
 
-        dadosProduto.forEach((produto, index) => {
+        itens.forEach((produto) => {
             
-            if(produto.nome.toLowerCase().includes(nome.toLowerCase()))
-                rows[index] = produto;
+            if( produto.nome.toLowerCase().includes(texto.toLowerCase()) ||
+                produto.descricao.toLowerCase().includes(texto.toLowerCase()) ||
+                produto.marca.toLowerCase().includes(texto.toLowerCase()) ||
+                produto.tensao.toLowerCase().includes(texto.toLowerCase()) ||
+                produto.id === parseInt(texto)
+            ) {
 
+                rows.push(produto);
+
+            } 
+            
         });
 
-        if(rows.length > 0 && nome.length > 0)
-            this.setState({ dadosProduto: rows })
-        else if (rows.length == 0 && nome.length > 0)
-            this.setState({ dadosProduto: allItens })
-        else 
-            this.setState({ dadosProduto: itens })
-        
+        this.setState({ dadosProduto: rows })
     }
     
     render() {
@@ -102,7 +104,7 @@ class GetRequestProduto extends React.Component {
                 <div>
                     <Stack spacing={6} direction='row' className='Filtro'>
                         <form>
-                            <Input placeholder='Filtrar por Nome' name='nome' size='sm' type='text' htmlSize={50} width='auto' onChange={(ev) => this.filterTable(ev.target.value)} />
+                            <Input placeholder='Pesquisar...' name='nome' size='sm' type='text' htmlSize={50} width='auto' onChange={(ev) => this.filterTable(ev.target.value)} maxLength={200} />
                         </form>
                     </Stack>
                 </div>
