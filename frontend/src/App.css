@@ -137,6 +137,6 @@
   opacity: 1; /* Firefox */
 }
 
-.Menu-icons {
+.Menu-icons, #root {
   background: #E2E8F0;
 }
