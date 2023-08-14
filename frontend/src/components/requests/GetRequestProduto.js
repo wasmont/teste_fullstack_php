@@ -1,23 +1,20 @@
 import React from 'react';
-import Modal from '../modal/ModalCadastro.js';
-import AlertDialog from '../AlertDialog/AlertDialogComponent.js';
 import {Table,
         Thead,
         Tbody,
         Tfoot,
         Tr,
         Th,
-        Td,
         TableCaption,
-        Center,
         Stack,
-        Input
+        Input,
+        Button
   } from '@chakra-ui/react';
 import { CSVLink } from "react-csv";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileCsv, faFilePdf } from "@fortawesome/free-solid-svg-icons";
 import Produtos from '../../Reports/Produtos.js';
-
+import Pagination from '../Pagination/Pagination.js';
 
 class GetRequestProduto extends React.Component {
     constructor(props) {
@@ -25,7 +22,8 @@ class GetRequestProduto extends React.Component {
 
         this.state = {
             dadosProduto: [],
-            itens: []
+            itens: [],
+            currentPage: 1
         };
     }
 
@@ -61,7 +59,7 @@ class GetRequestProduto extends React.Component {
     }
     
     render() {
-        const { dadosProduto } = this.state;
+        const { dadosProduto, currentPage } = this.state;
 
         //Export CSV
         const headers = [
@@ -78,27 +76,8 @@ class GetRequestProduto extends React.Component {
             filename: 'Listagem_Eletrodomesticos.csv'
         };
         
-        //Listagem
-        let rows = [];
-        dadosProduto.forEach((produto, index) => {
-            rows[index] = <Tr key={produto.id}>
-                <Td>{produto.id}</Td>
-                <Td>{produto.nome}</Td>
-                <Td>{produto.descricao}</Td>
-                <Td>{produto.marca}</Td>
-                <Td isNumeric>{produto.tensao}</Td>
-                <Td><span className="Acoes-grid">
-                        <div id="modal-cadastro"><Modal tipo="Alterar" id={produto.id} 
-                            nome={produto.nome} descricao={produto.descricao} tensao={produto.tensao} marca={produto.marca_id}/>
-                        </div>
-                        <div className='Excluir'>
-                            <AlertDialog id={produto.id} nome={produto.nome}/>
-                        </div>
-                    </span>
-                </Td>
-                </Tr>;
-        });
-
+        
+        
         return (
             <div>
                 <div>
@@ -123,10 +102,9 @@ class GetRequestProduto extends React.Component {
                     </Tr>
                     </Thead>
                     <Tbody>
-                        {rows.length > 0 ? (rows) : 
-                        (<Tr>
-                            <Td colSpan={6}><Center>Não existem Eletrodomésticos a serem listados!</Center></Td>
-                        </Tr>)}
+                    
+                        <Pagination products={dadosProduto} page={currentPage} limitPage={4} />
+
                     </Tbody>
                     <Tfoot>
                     <Tr>
@@ -137,8 +115,17 @@ class GetRequestProduto extends React.Component {
                         <Th isNumeric>TENSÃO</Th>
                         <Th isNumeric>AÇÕES</Th>
                     </Tr>
-                    </Tfoot>
+                    </Tfoot>                    
                 </Table>
+                <div id="Paginacao" style={{ display: "flex", justifyContent: "center", marginBottom: "1%", marginRight: "1%", marginTop: "1%"  }}>
+                    {
+                        Array((parseInt(localStorage.getItem('totalProdutosTableHome')) ?? 1)).fill("").map((_,index) => {
+                            return <Button key={index} onClick={() => this.setState({ currentPage: index+1 })} isDisabled={index===currentPage-1 ? true : false}>
+                                    {index+1}
+                                </Button>
+                        }) 
+                    }
+                </div>
             </div>
         );
     }

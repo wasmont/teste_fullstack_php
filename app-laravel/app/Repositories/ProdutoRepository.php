@@ -65,6 +65,7 @@ class ProdutoRepository implements ProdutoRepositoryInterface {
             $resultado = $this->produto
             ->leftJoin('marca', 'marca_id', '=', 'marca.id')
             ->select('produto.id','produto.nome','produto.descricao','produto.tensao','marca.id as marca_id','marca.nome as marca')
+            ->orderBy('produto.id', 'asc')
             ->get();
 
         }   
